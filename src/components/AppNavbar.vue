@@ -31,10 +31,15 @@ function logout() {
   <header class="navbar">
     <div class="navbar-inner container">
       <!-- Logo -->
-      <RouterLink to="/" class="navbar-logo" @click="closeMenu" aria-label="Dosu - Beranda">
-        <img src="/logo_dosu_transparent.png" alt="Dosu" class="logo-img" />
-      </RouterLink>
-
+      <div class="logo-user">
+        <RouterLink to="/" class="navbar-logo" @click="closeMenu" aria-label="Dosu - Beranda">
+          <img src="/logo_dosu_transparent.png" alt="Dosu" class="logo-img" />
+        </RouterLink>
+        <div class="user-info">
+          <User :size="16" />
+          <span class="username">{{ authStore.username }}</span>
+        </div>
+      </div>
       <!-- Desktop Nav -->
       <nav class="navbar-nav" role="navigation" aria-label="Navigasi utama">
         <RouterLink to="/" class="nav-link" exact-active-class="nav-link--active">Beranda</RouterLink>
@@ -58,10 +63,7 @@ function logout() {
         <!-- Auth: Desktop -->
         <template v-if="authStore.isLoggedIn">
           <div class="user-menu">
-            <div class="user-info">
-              <User :size="16" />
-              <span class="username">{{ authStore.username }}</span>
-            </div>
+            
             <button class="btn btn-secondary btn-sm" @click="logout" aria-label="Keluar">
               <LogOut :size="15" />
               Keluar
@@ -147,7 +149,11 @@ function logout() {
   text-decoration: none;
   flex-shrink: 0;
 }
-
+.logo-user{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .logo-img {
   height: 52px;
   width: auto;
